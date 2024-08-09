@@ -1,0 +1,21 @@
+description: This is the AOS description
+command:
+  exec: ls
+  description: List directories
+
+arguments:
+  - option: -l
+    description: use a long list format
+  - positional:
+      name: fisr file 
+      description: First input
+  - option: -h
+    value: 
+    raw: 
+    file:
+    description: human readable output
+  - value: .
+  - positional: 
+      name: seconf file
+      description: Seconf input
+    
