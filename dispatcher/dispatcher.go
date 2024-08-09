@@ -3,17 +3,26 @@ package dispatcher
 import (
 	"fmt"
 	"os"
-  "strings"
+	"strings"
 
 	"github.com/todoesverso/aos/command/builders/common"
+	command "github.com/todoesverso/aos/command/models"
 	"github.com/todoesverso/aos/executors/console"
 	"github.com/todoesverso/aos/executors/explainer"
-	command "github.com/todoesverso/aos/command/models"
 	"github.com/todoesverso/aos/executors/shell"
 	inputmodels "github.com/todoesverso/aos/inputs/models"
 	"github.com/todoesverso/aos/usage"
 
 	"github.com/pterm/pterm"
+)
+
+type ValidEnvOptionsEnum byte
+
+const (
+	Charh ValidEnvOptionsEnum = 'h'
+	CharH ValidEnvOptionsEnum = 'H'
+	CharR ValidEnvOptionsEnum = 'R'
+	CharE ValidEnvOptionsEnum = 'E'
 )
 
 func printAOSDescription(YamlInput inputmodels.YamlInput) {
@@ -25,7 +34,7 @@ func printAOSDescription(YamlInput inputmodels.YamlInput) {
 		for _, line := range lines {
 			wrappedText += pterm.DefaultParagraph.WithMaxWidth(60).Sprintln(line)
 		}
-    title := pterm.LightRed(os.Args[1])
+		title := pterm.LightRed(os.Args[1])
 		pterm.DefaultBox.WithTitle(title).Println(wrappedText)
 
 	}
@@ -50,17 +59,16 @@ func Dispatch(yamlInput inputmodels.YamlInput) error {
 
 	for _, char := range config {
 		switch char {
-		case 'h':
+		case rune(Charh):
 			usage.PrintUsage()
-		case 'H':
+		case rune(CharH):
 			printAOSDescription(yamlInput)
-		case 'R':
+		case rune(CharR):
 			ce := console.ConsoleExecutor{}
 			return ce.Execute(oscmd)
-    case 'E':
+		case rune(CharE):
 			ee := explainer.ExplainerExecutor{YamlInput: yamlInput}
 			return ee.Execute(oscmd)
-
 		default:
 		}
 
