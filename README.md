@@ -10,7 +10,7 @@
 
 
 <p align="center">
-  <img src="https://github.com/todoesverso/aos/actions/workflows/main.yaml/badge.svg">
+  <img src="https://github.com/todoesverso/aos/actions/workflows/main.yml/badge.svg">
   <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square">
 </p>
 
