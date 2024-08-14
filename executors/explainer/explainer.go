@@ -41,7 +41,7 @@ func (y ExplainerExecutor) Execute(cmd models.OSCommand) error {
 			text = lightGreenBoldStyle.Sprint(c.Positional.Name) + ": "
 			text += wrapTextWithTree(c.Positional.Description, 60, 1)
 		} else {
-			text = lightGreenBoldStyle.Sprint(c.Option )+ ": "
+			text = lightGreenBoldStyle.Sprint(c.Option) + ": "
 			text += wrapTextWithTree(c.Description, 60, 1)
 		}
 

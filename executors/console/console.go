@@ -9,7 +9,8 @@ import (
 
 type ConsoleExecutor struct{}
 
-func (y ConsoleExecutor) Execute(cmd models.OSCommand) error {
-	fmt.Printf("%s %s\n", cmd.Executable, strings.Join(cmd.Arguments, " "))
+func (ce ConsoleExecutor) Execute(cmd models.OSCommand) error {
+	commandStr := fmt.Sprintf("%s %s", cmd.Executable, strings.Join(cmd.Arguments, " "))
+	fmt.Println(commandStr)
 	return nil
 }

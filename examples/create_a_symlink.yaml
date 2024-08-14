@@ -1,0 +1,23 @@
+description: |
+  This AOS creates a symbolic link to a file or directory using the `ln` command.
+
+  The provided `ln` command creates a symlink, which is a reference to another file or directory. 
+  The `-s` flag specifies that the link should be symbolic (as opposed to a hard link).
+  The first argument is the target file or directory, and the second argument is the name of the symlink to be created.
+
+command:
+  exec: ln
+  description: symbolic link creator
+
+arguments:
+  - option: -s
+    description: >
+      This option creates a symbolic link rather than a hard link.
+      A symbolic link is a special type of file that serves as a reference 
+      to another file or directory in the filesystem.
+  - positional:
+      name: target
+      description: The target file or directory to which the symlink points.
+  - positional:
+      name: symlink
+      description: The name of the symbolic link to be created.

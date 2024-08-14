@@ -1,0 +1,35 @@
+description: |
+  This AOS extracts a gzipped tar archive to a specified directory using the `tar` command in verbose mode.
+
+  The provided `tar` command extracts the contents of a gzipped tar archive file into a specified directory.
+  The `-x` flag specifies extraction, the `-z` flag indicates that the archive is compressed with gzip,
+  the `-v` flag enables verbose output to display the progress of the extraction,
+  the `-f` flag specifies the filename of the archive to be extracted,
+  and the `-C` flag specifies the directory to which the contents should be extracted.
+
+command:
+  exec: tar
+  description: file extraction tool
+
+arguments:
+  - option: -x
+    description: >
+      This option tells `tar` to extract the contents of the archive.
+  - option: -z
+    description: >
+      This option indicates that the archive is compressed using gzip.
+  - option: -v
+    description: >
+      This option enables verbose mode, displaying the progress and names of the files being extracted.
+  - option: -f
+    description: >
+      This option specifies the filename of the archive to be extracted.
+  - positional:
+      name: archive_file.tar.gz
+      description: The gzipped tar archive file to be extracted.
+  - option: -C
+    description: >
+      This option specifies the directory to which the contents of the archive should be extracted.
+  - positional:
+      name: target_directory
+      description: The directory where the contents of the archive will be extracted.

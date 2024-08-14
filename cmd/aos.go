@@ -6,8 +6,8 @@ import (
 
 	"github.com/todoesverso/aos/command/builders/common"
 	"github.com/todoesverso/aos/dispatcher"
+	"github.com/todoesverso/aos/executors/usage"
 	"github.com/todoesverso/aos/inputs/file"
-	"github.com/todoesverso/aos/usage"
 )
 
 func main() {

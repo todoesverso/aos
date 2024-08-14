@@ -1,0 +1,31 @@
+description: |
+  This AOS creates a compressed archive of the a directory. 
+
+  It utilizes the tar utility with the following options: 
+  -c for creating a new archive, 
+  -z for compressing the archive using gzip, 
+  -v for verbose output to display the progress of the archiving process, 
+  and -f to specify the filename of the archive (example.tgz). 
+  As a result, the assets directory and its contents are bundled 
+  into a single file named example.tgz, which is both space-efficient
+  and easy to transport.
+
+command:
+  exec: tar
+  description: an archiving utility
+
+arguments:
+  - option: -c
+    description: create a new tar
+  - option: -z
+    description: ZIP compress it
+  - option: -v
+    description: be verbose
+  - option: -f
+    description: the generated archive file
+  - positional:
+      name: example.tgz
+      description: The path and name of the archive file
+  - positional: 
+      name: example/
+      description: The directory we want to archive

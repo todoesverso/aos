@@ -19,7 +19,7 @@ type CommonCommandBuilder struct{}
 
 func validatePositionalArgs(input inputmodels.YamlInput) error {
 
-  extraArgsCount := len(os.Args) - DEFAULT_ARGS_NUMBER
+	extraArgsCount := len(os.Args) - DEFAULT_ARGS_NUMBER
 	positionalCount := 0
 	for _, arg := range input.Arguments {
 		if arg.Positional != nil {
@@ -42,9 +42,9 @@ func (ccb CommonCommandBuilder) Build(input inputmodels.YamlInput) (models.OSCom
 	positionalCount := 0
 	for _, arg := range input.Arguments {
 		if arg.Positional != nil {
-			pos := os.Args[positionalCount + DEFAULT_ARGS_NUMBER]
+			pos := os.Args[positionalCount+DEFAULT_ARGS_NUMBER]
 			arguments = append(arguments, pos)
-      positionalCount += 1
+			positionalCount += 1
 		} else {
 			args := argpars.ParseArgument(arg)
 			arguments = append(arguments, args...)

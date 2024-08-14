@@ -6,44 +6,52 @@ import (
 	"os"
 	"os/exec"
 
-  command "github.com/todoesverso/aos/command/models"
+	"github.com/todoesverso/aos/command/models"
 )
 
 type ShellExecutor struct{}
 
-func (se ShellExecutor) Execute(oscmd command.OSCommand) error {
+func (se ShellExecutor) Execute(oscmd models.OSCommand) error {
 	cmd := exec.Command(oscmd.Executable, oscmd.Arguments...)
 
 	stdout, err := cmd.StdoutPipe()
 	if err != nil {
-		return fmt.Errorf("Error obtaining stdout: %v", err)
+		return fmt.Errorf("failed to obtain stdout: %w", err)
 	}
 
 	stderr, err := cmd.StderrPipe()
 	if err != nil {
-		return fmt.Errorf("Error obtaining stderr: %v", err)
+		return fmt.Errorf("failed to obtain stderr: %w", err)
 	}
 
 	if err := cmd.Start(); err != nil {
-		return fmt.Errorf("Error starting command: %v", err)
+		return fmt.Errorf("failed to start command: %w", err)
 	}
 
-	go func() error {
+	errChan := make(chan error, 2)
+
+	go func() {
 		if _, err := io.Copy(os.Stdout, stdout); err != nil {
-			return fmt.Errorf("Error copying stdout: %v", err)
+			errChan <- fmt.Errorf("failed to copy stdout: %w", err)
 		}
-		return nil
+		errChan <- nil
 	}()
 
-	go func() error {
+	go func() {
 		if _, err := io.Copy(os.Stderr, stderr); err != nil {
-			return fmt.Errorf("Error copying stderr: %v", err)
+			errChan <- fmt.Errorf("failed to copy stderr: %w", err)
 		}
-		return nil
+		errChan <- nil
 	}()
+
+	for i := 0; i < 2; i++ {
+		if err := <-errChan; err != nil {
+			return err
+		}
+	}
 
 	if err := cmd.Wait(); err != nil {
-		return fmt.Errorf("Error waiting for command: %v", err)
+		return fmt.Errorf("command execution failed: %w", err)
 	}
 
 	return nil
