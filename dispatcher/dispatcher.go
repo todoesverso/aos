@@ -6,7 +6,7 @@ import (
 
 	"github.com/todoesverso/aos/command/builders/common"
 	command "github.com/todoesverso/aos/command/models"
-	executorsmodel "github.com/todoesverso/aos/executors/models"
+	"github.com/todoesverso/aos/executors"
 	inputmodels "github.com/todoesverso/aos/inputs/models"
 )
 
@@ -22,16 +22,16 @@ func Dispatch(yamlInput inputmodels.YamlInput) error {
 		return err
 	}
 
-	executorsmodel.InitExecutors(yamlInput)
+	executorRegistry := executors.InitExecutors(yamlInput)
 	if config == "" {
-		if defaultExecutor, ok := executorsmodel.ExecutorRegistry[executorsmodel.Chard]; ok {
+		if defaultExecutor, ok := executorRegistry.GetExecutor(executors.Chard); ok {
 			return defaultExecutor.Execute(oscmd)
 		}
 		return errors.New("Executor not found")
 	}
 
 	for _, char := range config {
-		if exec, exists := executorsmodel.ExecutorRegistry[executorsmodel.EnvOption(char)]; exists {
+		if exec, exists := executorRegistry.GetExecutor(executors.EnvOption(char)); exists {
 			return exec.Execute(oscmd)
 		}
 	}

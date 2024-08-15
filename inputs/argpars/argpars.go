@@ -14,7 +14,7 @@ func appendIfNotEmpty(slice []string, value string) []string {
 }
 
 func ParseArgument(argument models.Argument) []string {
-	var ret []string
+	ret := []string{}
 
 	if argument.Raw != "" {
 		arguments := strings.Split(argument.Raw, " ")

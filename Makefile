@@ -6,5 +6,8 @@ build:
 test:
 	go test -cover ./...
 
+fmt:
+	go fmt ./...
+
 clean:
 	rm -fr ${BUILDS_PATH}

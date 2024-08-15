@@ -24,7 +24,7 @@ func PrintUsage() {
 	fmt.Printf("\t%s=H   %s <alias.yaml>\t# Prints a helper short description of the alias\n", ENV_VAR, exec_name)
 	fmt.Printf("\t%s=E   %s <alias.yaml>\t# Prints a helper long description of the alias\n", ENV_VAR, exec_name)
 	fmt.Printf("\t%s=R   %s <alias.yaml>\t# Renders the command and prints it to stdout\n", ENV_VAR, exec_name)
-	fmt.Printf("\t[%s=X] %s <alias.yaml>\t# Runs the command in a shell. \n", ENV_VAR, exec_name)
+	fmt.Printf("\t[%s=X] %s <alias.yaml>\t# Runs the command in a shell.\n", ENV_VAR, exec_name)
 
 }
 

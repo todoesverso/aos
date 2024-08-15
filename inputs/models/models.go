@@ -13,11 +13,13 @@ type Argument struct {
 	Positional  *PositionalArgument `yaml:"positional,omitempty"`
 }
 
-type YamlInput struct {
+type Command struct {
+	Exec        string `yaml:"exec"`
 	Description string `yaml:"description"`
-	Command     struct {
-		Exec        string `yaml:"exec"`
-		Description string `yaml:"description"`
-	} `yaml:"command"`
-	Arguments []Argument `yaml:"arguments"`
+}
+
+type YamlInput struct {
+	Description string     `yaml:"description"`
+	Command     Command    `yaml:"command"`
+	Arguments   []Argument `yaml:"arguments"`
 }
