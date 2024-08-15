@@ -15,6 +15,7 @@
 </p>
 
 <p align="center">
+  <a href="#idea">Idea</a> •
   <a href="#key-features">Key Features</a> •
   <a href="#usage">Usage</a> •
   <a href="#installation">Installation</a> •
@@ -22,6 +23,16 @@
   <a href="#roadmap">Roadmap</a> •
   <a href="#license">License</a>
 </p>
+
+## Idea
+The idea is very simple, sometimes commands in linux might be complex and difficult to remember
+so once you learn it write it down in a YAML file with whatever description you need and then
+just run it.
+
+- Why not use plain old alias?   Because sometimes commands need positional arguments,
+- Why not just a shell script?   A human readable YAML file seems easier
+- Why not just a shell function? Again a YAML is more friendly
+- Why not ...?                   To be honest, I just wanted to do it :)
 
 ## Key Features
 
