@@ -27,13 +27,13 @@ jobs:
 
       - name: Build binary
         run: |
-          GOOS=${{ matrix.os }} GOARCH=${{ matrix.arch }} go build -o myapp-${{ matrix.os }}-${{ matrix.arch }}
+          GOOS=${{ matrix.os }} GOARCH=${{ matrix.arch }} go build -v -o aos-${{ matrix.os }}-${{ matrix.arch }} ./cmd/aos.go
 
       - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:
-          name: myapp-${{ matrix.os }}-${{ matrix.arch }}
-          path: myapp-${{ matrix.os }}-${{ matrix.arch }}
+          name: aos-${{ matrix.os }}-${{ matrix.arch }}
+          path: aos-${{ matrix.os }}-${{ matrix.arch }}
 
   release:
     name: Create Release
@@ -44,7 +44,7 @@ jobs:
       - name: Download binaries
         uses: actions/download-artifact@v3
         with:
-          name: myapp-${{ matrix.os }}-${{ matrix.arch }}
+          name: aos-${{ matrix.os }}-${{ matrix.arch }}
 
       - name: Create GitHub Release
         id: create_release
@@ -63,7 +63,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: myapp-*
+          asset_path: aos-*
           asset_name: ${{ github.ref_name }}-${{ matrix.os }}-${{ matrix.arch }}
           asset_content_type: application/octet-stream
 
