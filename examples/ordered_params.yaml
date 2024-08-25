@@ -1,0 +1,24 @@
+description: |
+  This AOS is just an example to understand ordered positional arguments
+
+  Calling this aos file should look like:
+  
+    $ AOS=R aos examples/ordered_params.yaml 1 2 3
+      echo 2 1 3
+
+command:
+  exec: echo
+  description: prints something to stdout
+
+arguments:
+  - positional:
+      order: 2 
+      name: positional 1
+      description: This will be 2nd aos argument BUT rendered 1st
+  - positional:
+      order: 1
+      name: positional 2
+      description: This will be 1st aos argument BUT rendered 2nd
+  - positional:
+      name: positional 3 
+      description: This will be 3rd aos argument AND rendered 3rd

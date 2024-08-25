@@ -16,6 +16,6 @@ arguments:
     description: human readable output
   - value: .
   - positional: 
-      name: seconf file
-      description: Seconf input
-    
+      name: second file
+      description: Second input
+   

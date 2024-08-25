@@ -5,6 +5,13 @@ description: |
   The `-s` flag specifies that the link should be symbolic (as opposed to a hard link).
   The first argument is the target file or directory, and the second argument is the name of the symlink to be created.
 
+  This AOS has a different order in the position arguments than the final command executed.
+
+  $ aos create_a_symlink.yaml <symlink_name> <target>
+
+  This is because in my head the final command should be:
+  $ create_a_symlink this -> to_this
+
 command:
   exec: ln
   description: symbolic link creator
@@ -16,8 +23,10 @@ arguments:
       A symbolic link is a special type of file that serves as a reference 
       to another file or directory in the filesystem.
   - positional:
+      order: 2
       name: target
       description: The target file or directory to which the symlink points.
   - positional:
+      order: 1
       name: symlink
       description: The name of the symbolic link to be created.

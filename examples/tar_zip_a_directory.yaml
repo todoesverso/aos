@@ -21,11 +21,12 @@ arguments:
     description: ZIP compress it
   - option: -v
     description: be verbose
+  - positional: 
+      name: example/
+      description: The directory we want to archive
   - option: -f
     description: the generated archive file
   - positional:
       name: example.tgz
       description: The path and name of the archive file
-  - positional: 
-      name: example/
-      description: The directory we want to archive
+

@@ -13,17 +13,17 @@ import (
 func run(inputFile string) error {
 	if len(os.Args) < common.DEFAULT_ARGS_NUMBER {
 		usage.PrintUsage()
-		return fmt.Errorf("insufficient arguments")
+		return fmt.Errorf("Insufficient arguments")
 	}
 
 	yamlData, err := file.ParseInputFile(inputFile)
 	if err != nil {
-		return fmt.Errorf("error parsing input file: %v", err)
+		return fmt.Errorf("Error parsing input file: %v", err)
 	}
 
 	err = dispatcher.Dispatch(yamlData)
 	if err != nil {
-		return fmt.Errorf("error dispatching: %v", err)
+		return fmt.Errorf("Error dispatching: %v", err)
 	}
 	return nil
 }

@@ -3,6 +3,7 @@ package models
 type PositionalArgument struct {
 	Name        string `yaml:"name"`
 	Description string `yaml:"description"`
+	Order       int    `yaml:"order"`
 }
 
 type Argument struct {
